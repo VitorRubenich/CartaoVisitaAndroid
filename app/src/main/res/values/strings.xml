@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Cards</string>
+    <string name="label_business_card">Cartão de Visita</string>
+    <string name="content_fab_cartao_add">Botão para adicionar cartão de visita</string>
+    <string name="label_description_new_card">Novo Cartão</string>
+    <string name="label_fechar">Botão de retornar a tela anterior</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_telefone">Telefone</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_empresa">Empresa</string>
+    <string name="hint_cor">Cor</string>
+    <string name="label_confirmar">Confirmar</string>
+</resources>
