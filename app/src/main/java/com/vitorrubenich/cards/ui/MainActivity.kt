@@ -27,8 +27,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.listCards.adapter = adapter
-        getAllBusinessCard()
         insertListeners()
+        getAllBusinessCard()
+
     }
 
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomAppBar.setOnMenuItemClickListener{ menuItem ->
             when (menuItem.itemId) {
                 R.id.door -> {
-                    // Do Door Things
+                    doorActivity()
                     true
                 }
                 R.id.rotation -> {
@@ -75,6 +76,10 @@ class MainActivity : AppCompatActivity() {
     }
     fun adicionarNovoCartao(){
         val intent = Intent(this@MainActivity, AddBusinessCardActivity::class.java )
+        startActivity(intent)
+    }
+    fun doorActivity(){
+        val intent = Intent(this@MainActivity, DoorActivity::class.java)
         startActivity(intent)
     }
 }

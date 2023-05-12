@@ -19,16 +19,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="100dp"
+        android:backgroundTint="@color/black"
+        android:clipToPadding="false">
+
+    </androidx.core.widget.NestedScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_cards"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_margin="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:itemCount="8"
         tools:listitem="@layout/item_business_card" />
+
+
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
@@ -38,7 +46,6 @@
         style="@style/Widget.Material3.BottomAppBar"
         app:navigationIcon="@drawable/ic_drawer_menu_24px"
         app:menu="@menu/bottom_app_bar"
-        app:hideOnScroll="true"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
