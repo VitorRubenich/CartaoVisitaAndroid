@@ -35,7 +35,6 @@ class AddBusinessCardActivity : AppCompatActivity() {
                 fundoPersonalizado = binding.tilCor.editText?.text.toString()
                 )
             mainViewModel.insert(businessCard)
-            Snackbar.make(binding.root, R.string.label_success,Snackbar.LENGTH_LONG).show()
             finish()
         }
     }

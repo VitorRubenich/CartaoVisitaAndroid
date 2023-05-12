@@ -1,15 +1,17 @@
 package com.vitorrubenich.cards.ui
 
+
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.vitorrubenich.cards.App
 import com.vitorrubenich.cards.R
 import com.vitorrubenich.cards.databinding.ActivityMainBinding
 import com.vitorrubenich.cards.util.Image
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,40 +34,47 @@ class MainActivity : AppCompatActivity() {
 
     fun insertListeners(){
         binding.fabAdicionarCartaoVisita.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddBusinessCardActivity::class.java )
-            startActivity(intent)
+            adicionarNovoCartao()
         }
         adapter.listenerShare = { card ->
             Image.share(this@MainActivity, card)
         }
-        binding.bottomAppBar.setOnMenuItemClickListener{
-            Snackbar.make(binding.root,"$it", Snackbar.LENGTH_LONG).show()
-            true
-        }
-        binding.bottomAppBar.setNavigationOnClickListener{menuItem ->
-            Log.e("LISTENER", "insertListeners: ${menuItem.id}")
-            when (menuItem.id) {
+        binding.bottomAppBar.setOnMenuItemClickListener{ menuItem ->
+            when (menuItem.itemId) {
                 R.id.door -> {
-                    Snackbar.make(binding.root, resources.getString(R.string.door), Snackbar.LENGTH_SHORT).show()
+                    // Do Door Things
                     true
                 }
                 R.id.rotation -> {
-                    Snackbar.make(binding.root, resources.getString(R.string.rotation), Snackbar.LENGTH_SHORT).show()
+                    // Do Rotation Things
 
                     true
                 }
                 R.id.dashboard -> {
-                    Snackbar.make(binding.root, resources.getString(R.string.dashboard), Snackbar.LENGTH_SHORT).show()
-
+                    // Do Dashboard things
                     true
                 }
                 else -> false
             }
+            true
+        }
+        binding.bottomAppBar.setNavigationOnClickListener{menuItem ->
+            Log.e("LISTENER", "insertListeners: ${menuItem.id}")
+            AlertDialog.Builder(binding.root.context)
+                .setMessage("Ir para configurações?")
+                .setPositiveButton("Sim") { dialog, which -> adicionarNovoCartao() }
+                .setNegativeButton("Não") { dialog, which -> dialog.dismiss() }
+                .create().show()
+
         }
     }
     private fun getAllBusinessCard(){
         mainViewModel.getAll().observe(this) {
             businessCards -> adapter.submitList(businessCards)
         }
+    }
+    fun adicionarNovoCartao(){
+        val intent = Intent(this@MainActivity, AddBusinessCardActivity::class.java )
+        startActivity(intent)
     }
 }
